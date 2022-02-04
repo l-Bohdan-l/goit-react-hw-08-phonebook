@@ -2,22 +2,24 @@ import './App.scss';
 import React from 'react';
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ContactForm } from './components/ContactForm/ContactForm';
-import { ContactsList } from './components/ContactList/ContactList';
-import { Container } from './components/Container/Container';
-import { Filter } from './components/Filter/Filter';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { ContactForm } from './components/ContactForm/ContactForm';
+// import { ContactsList } from './components/ContactList/ContactList';
+// import { Container } from './components/Container/Container';
+// import { Filter } from './components/Filter/Filter';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {
+//   addContact,
+//   fetchContactsList,
+//   deleteContactsOps,
+//   filterContact,
+// } from './redux/contacts/actions';
 import { LoginForm } from './components/LoginForm/LoginForm';
 import { RegisterForm } from './components/RegisterForm/RegisterForm';
 
-import {
-  addContact,
-  fetchContactsList,
-  deleteContactsOps,
-  filterContact,
-} from './redux/contacts/actions';
 import { Contacts } from './components/Contacts/Contacts';
+import { HomePage } from './components/HomePage/HomePage';
+import { Header } from './components/Header/Header';
 
 function App() {
   // const contacts = useSelector(state => state.phonebookReducers.contacts);
@@ -62,13 +64,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Header />
         <section className="App-header">
           <Suspense fallback={<h2>Loading ...</h2>}>
             <Routes>
+              <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegisterForm />} />
               <Route path="/contacts" element={<Contacts />} />
-              <Route path="*" element={<LoginForm />} />
+              <Route path="*" element={<HomePage />} />
             </Routes>
           </Suspense>
 
