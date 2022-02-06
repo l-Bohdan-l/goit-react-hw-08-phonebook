@@ -30,7 +30,6 @@ const authSlice = createSlice({
       state.token = null;
     });
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.userData = { ...action.payload };
       // state.userData = action.payload;
       state.isLogin = true;

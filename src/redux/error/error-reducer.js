@@ -41,10 +41,9 @@ const errorSlice = createSlice({
       logout.rejected,
       (state, action) => (state = action.payload),
     );
-    builder.addCase(
-      getCurrentUser.rejected,
-      (state, action) => (state = action.payload),
-    );
+    builder.addCase(getCurrentUser.rejected, (state, action) => {
+      state = action.payload;
+    });
 
     builder.addCase(deleteContactsOps.fulfilled, state => (state = null));
     builder.addCase(addContact.fulfilled, state => (state = null));

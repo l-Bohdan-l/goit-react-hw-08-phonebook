@@ -7,7 +7,7 @@ export function HomePage() {
   return (
     <div>
       {isLoggedIn && <p>Welcome {userMail}</p>}
-      {isLoggedIn && <p>Welcome {userMail}</p>}
+      {!isLoggedIn && <p>Welcome, please Login to see your contacts</p>}
     </div>
   );
 }
