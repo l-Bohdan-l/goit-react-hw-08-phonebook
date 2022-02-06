@@ -27,7 +27,7 @@ export const registerApi = async credentials => {
  * body: { email, password }
  * После успешного логина добавляем токен в HTTP-заголовок
  */
-export const login = async credentials => {
+export const logIn = async credentials => {
   const { data } = await axios.post('/users/login', credentials);
   token.set(data.token);
   return data;
