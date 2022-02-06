@@ -6,7 +6,7 @@ import { filterContact } from '../../redux/contacts/actions';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.phonebookReducers.filter);
+  const filter = useSelector(state => state.contacts.filter);
 
   return (
     <label className={styles.findLabel}>

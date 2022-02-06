@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -41,4 +41,14 @@ export const logIn = async credentials => {
 export const logOut = async () => {
   await axios.post('/users/logout');
   token.unset();
+};
+
+export const fetchCurrentUser = async () => {
+  const { data } = await axios.get('/users/current');
+  return data;
+  // const persistedToken = state.user.token;
+  // token.set(persistedToken);
+  // if (persistedToken === null) {
+  //     return
+  //   };
 };

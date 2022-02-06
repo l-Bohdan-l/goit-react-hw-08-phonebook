@@ -13,8 +13,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export function Contacts() {
-  const contacts = useSelector(state => state.phonebookReducers.contacts);
-  const filter = useSelector(state => state.phonebookReducers.filter);
+  const contacts = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
 
   const createContact = newContact => {

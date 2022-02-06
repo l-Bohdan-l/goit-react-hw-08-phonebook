@@ -1,10 +1,15 @@
 import styles from './ContactForm.module.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function ContactForm({ createContact }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+  console.log(contacts);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;

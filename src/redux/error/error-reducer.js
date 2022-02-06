@@ -1,4 +1,9 @@
-import { register, login, logout } from '../auth/auth-operations';
+import {
+  register,
+  login,
+  logout,
+  getCurrentUser,
+} from '../auth/auth-operations';
 import {
   addContact,
   fetchContactsList,
@@ -34,6 +39,10 @@ const errorSlice = createSlice({
     );
     builder.addCase(
       logout.rejected,
+      (state, action) => (state = action.payload),
+    );
+    builder.addCase(
+      getCurrentUser.rejected,
       (state, action) => (state = action.payload),
     );
 

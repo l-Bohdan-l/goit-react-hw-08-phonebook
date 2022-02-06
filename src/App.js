@@ -6,25 +6,28 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import { ContactsList } from './components/ContactList/ContactList';
 // import { Container } from './components/Container/Container';
 // import { Filter } from './components/Filter/Filter';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 // import {
 //   addContact,
 //   fetchContactsList,
 //   deleteContactsOps,
 //   filterContact,
 // } from './redux/contacts/actions';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { LoginForm } from './components/LoginForm/LoginForm';
 import { RegisterForm } from './components/RegisterForm/RegisterForm';
 
 import { Contacts } from './components/Contacts/Contacts';
 import { HomePage } from './components/HomePage/HomePage';
 import { Header } from './components/Header/Header';
+import { getCurrentUser } from '../src/redux/auth/auth-operations';
+import { PrivateRoute } from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   // const contacts = useSelector(state => state.phonebookReducers.contacts);
   // const filter = useSelector(state => state.phonebookReducers.filter);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const createContact = newContact => {
   //   const dublicateContact = contacts.some(checkedContact => {
@@ -61,6 +64,10 @@ function App() {
 
   // const filteredContacts = getFilteredContacts();
 
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -68,10 +75,42 @@ function App() {
         <section className="App-header">
           <Suspense fallback={<h2>Loading ...</h2>}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/register" element={<RegisterForm />} />
-              <Route path="/contacts" element={<Contacts />} />
+              {/* <Route path="/" element={<HomePage />} /> */}
+              {/* <Route path="/login" element={<LoginForm />} />
+              <Route path="/register" element={<RegisterForm />} /> */}
+              {/* <Route path="/contacts" element={<Contacts />} /> */}
+              <Route
+                path="/"
+                element={
+                  <PublicRoute redirectTo={'/'}>
+                    <HomePage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute redirectTo={'/contacts'} restricted>
+                    <LoginForm />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute redirectTo={'/contacts'} restricted>
+                    <RegisterForm />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute redirectTo={'/login'}>
+                    <Contacts />
+                  </PrivateRoute>
+                }
+              />
               <Route path="*" element={<HomePage />} />
             </Routes>
           </Suspense>

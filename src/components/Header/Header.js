@@ -1,10 +1,22 @@
 import { NavLink } from 'react-router-dom';
+import { AuthNav } from './AuthNav/AuthNav';
+import { HomeNav } from './HomeNavigation/HomeNavigation';
+import { UserMenu } from './UserMenu/UserMenu';
+import { useSelector, useDispatch } from 'react-redux';
+import authSelectors from '../../redux/auth/auth-selectors';
+import { Contacts } from '../Contacts/Contacts';
 
 export function Header() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return (
     <>
       <header>
-        <div>
+        <HomeNav />
+        <NavLink to="/contacts">Contacts</NavLink>
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        {/* {isLoggedIn ? <Contacts/> : <AuthNav/>} */}
+        {/* <div>
           <ul>
             <li>
               <NavLink
@@ -37,7 +49,7 @@ export function Header() {
               </NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
       </header>
     </>
   );

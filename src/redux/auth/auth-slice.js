@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout } from './auth-operations';
+import { register, login, logout, getCurrentUser } from './auth-operations';
 
 const initialState = {
-  user: {
+  userData: {
     name: '',
     email: '',
   },
   token: null,
-  isLoggedIn: false,
+  isLogin: false,
 };
 
 const authSlice = createSlice({
@@ -28,6 +28,12 @@ const authSlice = createSlice({
       state.userData = { name: '', email: '' };
       state.isLogin = false;
       state.token = null;
+    });
+    builder.addCase(getCurrentUser.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.userData = { ...action.payload };
+      // state.userData = action.payload;
+      state.isLogin = true;
     });
   },
 });

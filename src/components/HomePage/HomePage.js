@@ -1,7 +1,13 @@
+import { useSelector, useDispatch } from 'react-redux';
+import authSelectors from '../../redux/auth/auth-selectors';
+
 export function HomePage() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const userMail = useSelector(authSelectors.getUserMail);
   return (
     <div>
-      <p>Please Log in, to see your contacts</p>
+      {isLoggedIn && <p>Welcome {userMail}</p>}
+      {isLoggedIn && <p>Welcome {userMail}</p>}
     </div>
   );
 }
