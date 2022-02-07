@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import styles from './AuthNav.module.scss';
 
 export function AuthNav() {
   return (
-    <ul>
-      <li>
+    <ul className={styles.list}>
+      <li className={styles.item}>
         <NavLink
+          className={styles.link}
           style={({ isActive }) => ({
             color: isActive ? '#e96e1d' : 'black',
           })}
@@ -13,8 +15,9 @@ export function AuthNav() {
           Login
         </NavLink>
       </li>
-      <li>
+      <li className={styles.item}>
         <NavLink
+          className={styles.link}
           style={({ isActive }) => ({
             color: isActive ? '#e96e1d' : 'black',
           })}

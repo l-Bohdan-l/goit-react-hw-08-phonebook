@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { register, login, logout } from '../../redux/auth/auth-operations';
 import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
+import styles from './LoginForm.module.scss';
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -30,37 +31,47 @@ export function LoginForm() {
 
   return (
     <>
-      {!isLoggedIn && <p>Please Login, to see your Contacts</p>}
-      <form onSubmit={handleSubmit}>
-        <p>Login</p>
-        <label>
-          <span>Email</span>
-          <input
-            onChange={handleChange}
-            value={email}
-            type="email"
-            name="email"
-            id="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            required
-          />
-        </label>
-        <label>
-          <span>Password</span>
-          <input
-            onChange={handleChange}
-            value={password}
-            type="password"
-            name="password"
-            id="password"
-            pattern="[A-Za-z0-9@#$%]{8,20}"
-            title="A valid password is a string with a length between 8 and 20 
-          characters, each consisting of an upper or lower-case letter, a digit,
-          or the symbols '@', '#', '$' and '%'"
-            required
-          />
-        </label>
-        <button type="submit">Login</button>
+      {!isLoggedIn && (
+        <p className={styles.loginFormMessage}>
+          Please Login, to see your Contacts
+        </p>
+      )}
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <p className={styles.formName}>Login</p>
+        <div className={styles.wrapper}>
+          <label className={styles.inputLabel}>
+            <span className={styles.inputName}>Email</span>
+            <input
+              onChange={handleChange}
+              value={email}
+              type="email"
+              name="email"
+              id="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+              className={styles.input}
+            />
+          </label>
+          <label className={styles.inputLabel}>
+            <span className={styles.inputName}>Password</span>
+            <input
+              onChange={handleChange}
+              value={password}
+              type="password"
+              name="password"
+              id="password"
+              pattern="[A-Za-z0-9@#$%]{8,20}"
+              title="A valid password is a string with a length between 8 and 20 
+            characters, each consisting of an upper or lower-case letter, a digit,
+            or the symbols '@', '#', '$' and '%'"
+              required
+              className={styles.input}
+            />
+          </label>
+          <button className={styles.button} type="submit">
+            Log in
+          </button>
+        </div>
       </form>
     </>
   );

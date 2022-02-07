@@ -5,15 +5,18 @@ import { UserMenu } from './UserMenu/UserMenu';
 import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { Contacts } from '../Contacts/Contacts';
+import styles from './Header.module.scss';
 
 export function Header() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <HomeNav />
-        <NavLink to="/contacts">Contacts</NavLink>
+        <NavLink className={styles.link} to="/contacts">
+          Contacts
+        </NavLink>
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
         {/* {isLoggedIn ? <Contacts/> : <AuthNav/>} */}
         {/* <div>

@@ -72,60 +72,62 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-        <section className="App-header">
-          <Suspense fallback={<h2>Loading ...</h2>}>
-            <Routes>
-              {/* <Route path="/" element={<HomePage />} /> */}
-              {/* <Route path="/login" element={<LoginForm />} />
-              <Route path="/register" element={<RegisterForm />} /> */}
-              {/* <Route path="/contacts" element={<Contacts />} /> */}
-              <Route
-                path="/"
-                element={
-                  <PublicRoute redirectTo={'/'}>
-                    <HomePage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <PublicRoute redirectTo={'/contacts'} restricted>
-                    <LoginForm />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/register"
-                element={
-                  <PublicRoute redirectTo={'/contacts'} restricted>
-                    <RegisterForm />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/contacts"
-                element={
-                  <PrivateRoute redirectTo={'/login'}>
-                    <Contacts />
-                  </PrivateRoute>
-                }
-              />
-              <Route path="*" element={<HomePage />} />
-            </Routes>
-          </Suspense>
+        <main className="App-header">
+          <section>
+            <Suspense fallback={<h2>Loading ...</h2>}>
+              <Routes>
+                {/* <Route path="/" element={<HomePage />} /> */}
+                {/* <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} /> */}
+                {/* <Route path="/contacts" element={<Contacts />} /> */}
+                <Route
+                  path="/"
+                  element={
+                    <PublicRoute redirectTo={'/'}>
+                      <HomePage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <PublicRoute redirectTo={'/contacts'} restricted>
+                      <LoginForm />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicRoute redirectTo={'/contacts'} restricted>
+                      <RegisterForm />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/contacts"
+                  element={
+                    <PrivateRoute redirectTo={'/login'}>
+                      <Contacts />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="*" element={<HomePage />} />
+              </Routes>
+            </Suspense>
 
-          {/* <Container title="Phonebook">
-            <ContactForm createContact={createContact} />
-          </Container>
-          <Container title="Contacts">
-            <Filter value={filter} onChange={changeFilter} />
-            <ContactsList
-              contacts={filteredContacts}
-              onDelete={handleDelete}
-            ></ContactsList>
-          </Container> */}
-        </section>
+            {/* <Container title="Phonebook">
+              <ContactForm createContact={createContact} />
+            </Container>
+            <Container title="Contacts">
+              <Filter value={filter} onChange={changeFilter} />
+              <ContactsList
+                contacts={filteredContacts}
+                onDelete={handleDelete}
+              ></ContactsList>
+            </Container> */}
+          </section>
+        </main>
       </div>
     </BrowserRouter>
   );
