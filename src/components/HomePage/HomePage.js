@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import styles from './HomePage.module.scss';
 
-export function HomePage() {
+export default function HomePage() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const userMail = useSelector(authSelectors.getUserMail);
   return (

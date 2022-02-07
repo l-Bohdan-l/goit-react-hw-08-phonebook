@@ -31,7 +31,6 @@ const authSlice = createSlice({
     });
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {
       state.userData = { ...action.payload };
-      // state.userData = action.payload;
       state.isLogin = true;
     });
   },

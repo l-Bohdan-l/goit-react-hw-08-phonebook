@@ -8,7 +8,6 @@ import {
   addContact,
   fetchContactsList,
   deleteContactsOps,
-  filterContact,
 } from '../contacts/actions';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -44,13 +43,6 @@ const errorSlice = createSlice({
     builder.addCase(getCurrentUser.rejected, (state, action) => {
       state = action.payload;
     });
-
-    builder.addCase(deleteContactsOps.fulfilled, state => (state = null));
-    builder.addCase(addContact.fulfilled, state => (state = null));
-    builder.addCase(fetchContactsList.fulfilled, state => (state = null));
-    builder.addCase(login.fulfilled, state => (state = null));
-    builder.addCase(register.fulfilled, state => (state = null));
-    builder.addCase(logout.fulfilled, state => (state = null));
 
     builder.addCase(deleteContactsOps.pending, state => (state = null));
     builder.addCase(addContact.pending, state => (state = null));

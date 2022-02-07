@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register, login, logout } from '../../redux/auth/auth-operations';
+import { login } from '../../redux/auth/auth-operations';
 import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import styles from './LoginForm.module.scss';
+import PropTypes from 'prop-types';
 
-export function LoginForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -76,3 +77,10 @@ export function LoginForm() {
     </>
   );
 }
+
+LoginForm.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.number,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+};

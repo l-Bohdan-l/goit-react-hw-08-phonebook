@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register, login, logout } from '../../redux/auth/auth-operations';
+import { register } from '../../redux/auth/auth-operations';
 import styles from './RegisterForm.module.scss';
+import PropTypes from 'prop-types';
 
-export function RegisterForm() {
+export default function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +24,6 @@ export function RegisterForm() {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('submit', { target: { name, email, password } });
     dispatch(register({ name, email, password }));
     setName('');
     setEmail('');
@@ -83,3 +83,11 @@ export function RegisterForm() {
     </form>
   );
 }
+
+RegisterForm.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.number,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+};
